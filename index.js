@@ -5,14 +5,16 @@ const text = require('./const');
 
 const bot = new Telegraf(process.env.BOT_TOKEN);
 bot.start(ctx =>
-  ctx.reply(`Привет ${ctx.message.from.first_name ? ctx.message.from.first_name : 'аноним'}!`)
+  ctx.reply(
+    `Добро пожаловать ${ctx.message.from.first_name ? ctx.message.from.first_name : 'аноним'}!`
+  )
 );
 bot.help(ctx => ctx.reply(text.commands));
 
 bot.command('create_reminder', async ctx => {
   try {
     await ctx.replyWithHTML(
-      '<b>Повтор</b>',
+      '<b>Повтор:</b>',
       Markup.inlineKeyboard([
         [Markup.button.callback('Каждый час', 'btn_eryh')],
         [
